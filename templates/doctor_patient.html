@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>patient table</title>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: center;
+      padding: 8px;
+  
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+</head>
+<body>
+  {% if user.is_authenticated %}
+<h1 align="center">Dr. {{ request.user }}</h1>
+
+<table >
+  <th> PATIENT DETAIL</th>
+</table>
+  <table>
+  <tr >
+    <th>NAME</th>
+    <th>EMAIL</th>
+    <th>CONTACT</th>
+    <th>DOB</th>
+    <th>APPOINTMENT TIME</th>
+    <th>ADDRESS</th>
+    <th>BLOOD GROUP</th>
+    <th>APPROVE APPOINTMENT</th>
+    <th>ADD PRESCRIPTION</th>
+    
+  </tr>
+    {% for i in object_list %}
+
+    <tr>
+      <td><a href="/prescription_list/">{{i.name}}</a></td>
+      <td>{{i.email}}</td>
+      <td>{{i.contact_number}}</td>
+      <td>{{i.DOB}}</td>
+      <td>{{i.Appointment_time}}</td>
+      <td>{{i.address}}</td>
+      <td>{{i.blood_group}}</td>
+      <td><a href="/approve_appointment/{{i.id}}/"> approve</a></td>
+      <td><a href="/prescription/"> add prescription</a></td>
+    </tr>
+
+    {% endfor %}
+  
+
+</table><br><br><br>
+
+{% endif %}
+</body>
+</html>
+{% endblock %}

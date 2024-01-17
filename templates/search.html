@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>patient table</title>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+</head>
+<body>
+
+  <br><br>
+  <h1>Patient All Appointment Dates</h1>
+  <table>
+  <tr >
+    <th>NAME</th>
+    <th>EMAIL</th>
+    <th>CONTACT</th>
+    <th>DOB</th>
+    <th>APPOINTMENT DATE</th>
+    <th>DOCTOR</th>
+    <th>ADDRESS</th>
+    <th>BLOOD GROUP</th>
+    <th>Make Appointment</th>
+  </tr>
+    {% for i in data %}
+    <tr>
+      <td>{{i.name}}</td>
+      <td>{{i.email}}</td>
+      <td>{{i.contact_number}}</td>
+      <td>{{i.DOB}}</td>
+      <td>{{i.Appointment_time}}</td>
+      <td>{{i.doctor}}</td>
+      <td>{{i.address}}</td>
+      <td>{{i.blood_group}}</td>
+      <td><a href="/re_appointment/{{ i.id }}"> Re Appointment</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+    <h1> prescription for patient</h1>
+    <table>
+      <tr>
+        <th>doctor name</th>
+        <th>patient name</th>
+        <th>prescription</th>
+        <th>Prescription date</th>
+      </tr>
+      {% for i in data1 %}
+      <tr>
+        <td>{{i.doctor_name}}</td>
+        <td>{{i.patient_name}}</td>
+        <td><a href="{{ i.prescription.url }}"><img src="{{ i.prescription.url }}" alt="image" width="50"></td></a>
+        <td>{{i.date}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <button><a href="/prescription/"> add more prescription</a></button>
+
+
+</body>
+</html>
+{% endblock %}

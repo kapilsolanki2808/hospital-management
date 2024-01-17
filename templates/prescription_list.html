@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prescription List</title>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #533737;
+      text-align: center;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+</head>
+<body>
+
+
+  <h1> prescription for patient</h1>
+  <table>
+    <tr>
+      <th>doctor name</th>
+      <th>patient name</th>
+      <th>prescription</th>
+      <th>Prescription date</th>
+    </tr>
+    {% for i in data1 %}
+    <tr>
+      <td>{{i.doctor_name}}</td>
+      <td>{{i.patient_name}}</td>
+      <td><a href="{{ i.prescription.url }}"><img src="{{ i.prescription.url }}" alt="image" width="50"></td></a>
+      <td>{{i.date}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <button><a href="/prescription/"> add more prescription</a></button>
+</body>
+</html>
+  
+{% endblock %}
